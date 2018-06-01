@@ -1,0 +1,5 @@
+name: pks-master-gateway
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp/pks-master-gateway

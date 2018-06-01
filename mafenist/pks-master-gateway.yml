@@ -1,0 +1,53 @@
+---
+name: pks-master-gateway
+
+releases:
+- name: pks-master-gateway
+  version: latest
+
+stemcells:
+- os: ubuntu-trusty
+  alias: trusty
+  version: latest
+
+instance_groups:
+- name: pks-master-gateway
+  jobs:
+  - name: pks-master-gateway
+    release: pks-master-gateway
+    properties:
+      pks_api_url: ((pks_api_url))
+      pks_uaa_url: ((pks_uaa_url))
+      pks_uaa_client_id: ((pks_uaa_client_id))
+      pks_uaa_client_secret: ((pks_uaa_client_secret))
+      tls:
+        certificate: ((pks_master_gateway_tls.certificate))
+        private_key: ((pks_master_gateway_tls.private_key))
+  instances: 1
+  stemcell: trusty
+  azs: [asia-northeast1-a]
+  vm_type: micro
+  vm_extensions:
+  - public_ip
+  networks:
+  - name: pks-main
+
+variables:
+- name: pks_master_gateway_ca
+  type: certificate
+  options:
+    is_ca: true
+    common_name: ca
+- name: pks_master_gateway_tls
+  type: certificate
+  options:
+    ca: pks_master_gateway_ca
+    common_name: 127.0.0.1
+    alternative_names:
+    - "*.((pks_master_gateway_subdomain))"
+
+update:
+  canaries: 1
+  max_in_flight: 3
+  canary_watch_time: 30000-600000
+  update_watch_time: 5000-600000

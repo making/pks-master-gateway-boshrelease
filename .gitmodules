@@ -1,0 +1,3 @@
+[submodule "src/pks-master-gateway"]
+	path = src/pks-master-gateway
+	url = git@github.com:making/pks-master-gateway.git

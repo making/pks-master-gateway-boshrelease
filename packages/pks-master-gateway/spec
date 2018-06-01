@@ -1,0 +1,7 @@
+---
+name: pks-master-gateway
+
+dependencies: []
+
+files:
+- pks-master-gateway/pks-master-gateway.jar

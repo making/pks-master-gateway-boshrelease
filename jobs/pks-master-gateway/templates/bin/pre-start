@@ -1,0 +1,30 @@
+#!/bin/bash
+
+export JAVA_HOME=/var/vcap/packages/java
+export PATH=$PATH:$JAVA_HOME/bin
+
+CONFIG_DIR=/var/vcap/jobs/pks-master-gateway/config
+
+chown -R vcap ${CONFIG_DIR}
+chmod 600 ${CONFIG_DIR}/*
+
+rm -f ${CONFIG_DIR}/keystore.p12 ${CONFIG_DIR}/keystore.jks
+
+openssl pkcs12 -export \
+        -name pks-master-gateway \
+        -in ${CONFIG_DIR}/tls.crt  \
+        -inkey ${CONFIG_DIR}/tls.key \
+        -out ${CONFIG_DIR}/keystore.p12 \
+        -password pass:foobar
+
+keytool -importkeystore \
+        -destkeystore ${CONFIG_DIR}/keystore.jks \
+        -srckeystore ${CONFIG_DIR}/keystore.p12 \
+        -deststoretype pkcs12 \
+        -srcstoretype pkcs12 \
+        -alias pks-master-gateway \
+        -deststorepass changeme \
+        -destkeypass changeme \
+        -srcstorepass foobar \
+        -srckeypass foobar \
+        -noprompt

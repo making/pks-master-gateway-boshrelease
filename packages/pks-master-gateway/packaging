@@ -1,0 +1,3 @@
+set -e
+
+cp -a ./pks-master-gateway/pks-master-gateway.jar $BOSH_INSTALL_TARGET/

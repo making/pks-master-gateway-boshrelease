@@ -1,0 +1,48 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/pks-master-gateway
+LOG_DIR=/var/vcap/sys/log/pks-master-gateway
+JOB_DIR=/var/vcap/jobs/pks-master-gateway
+PIDFILE=$RUN_DIR/pks-master-gateway.pid
+RUNAS=vcap
+
+export JAVA_HOME=/var/vcap/packages/java
+export PATH=$PATH:$JAVA_HOME/bin
+
+
+function pid_exists() {
+  ps -p $1 &> /dev/null
+}
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR $STORE_DIR
+    chown -R $RUNAS:$RUNAS $RUN_DIR $LOG_DIR $STORE_DIR
+
+    echo $$ > $PIDFILE
+
+    exec chpst -u $RUNAS:$RUNAS \
+      java -jar /var/vcap/packages/pks-master-gateway/pks-master-gateway.jar \
+      --server.port=<%= p("server_port") %> \
+      --pks.master.gateway.api-url=<%= p("pks_api_url") %> \
+      --pks.master.gateway.uaa-url=<%= p("pks_uaa_url") %> \
+      --pks.master.gateway.uaa-client-id=<%= p("pks_uaa_client_id") %> \
+      --pks.master.gateway.uaa-client-secret=<%= p("pks_uaa_client_secret") %> \
+      --server.ssl.key-store=file:///var/vcap/jobs/pks-master-gateway/config/keystore.jks \
+      >>$LOG_DIR/pks-master-gateway.stdout.log 2>>$LOG_DIR/pks-master-gateway.stderr.log
+    ;;
+
+  stop)
+    PID=$(head -1 $PIDFILE)
+    if [ ! -z $PID ] && pid_exists $PID; then
+      kill $PID
+    fi
+    while [ -e /proc/$PID ]; do sleep 0.1; done
+    rm -f $PIDFILE
+    ;;
+
+  *)
+  echo "Usage: ctl {start|stop|console}" ;;
+esac
+exit 0

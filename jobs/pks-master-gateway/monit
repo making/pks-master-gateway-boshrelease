@@ -1,0 +1,5 @@
+check process pks-master-gateway
+  with pidfile /var/vcap/sys/run/pks-master-gateway/pks-master-gateway.pid
+  start program "/var/vcap/jobs/pks-master-gateway/bin/ctl start"
+  stop program "/var/vcap/jobs/pks-master-gateway/bin/ctl stop"
+  group vcap

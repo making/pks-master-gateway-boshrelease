@@ -1,0 +1,31 @@
+---
+name: pks-master-gateway
+
+templates:
+  bin/pre-start: bin/pre-start
+  bin/post-start: bin/post-start
+  bin/ctl: bin/ctl
+  config/tls.crt: config/tls.crt
+  config/tls.key: config/tls.key
+
+packages:
+- java
+- pks-master-gateway
+
+properties:
+  server_port:
+    description: "sever port"
+    default: 8443
+  pks_api_url:
+    description: "PKS API URL"
+  pks_uaa_url:
+    description: "PKS UAA URL"
+  pks_uaa_client_id:
+    description: "PKS UAA Client ID"
+    default: pks_client
+  pks_uaa_client_secret:
+    description: "PKS UAA Client Secret"
+  tls.certificate:
+    description: "TLS certificate"
+  tls.private_key:
+    description: "TLS private key"
