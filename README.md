@@ -80,4 +80,4 @@ bosh upload-release /tmp/pks-master-gateway-boshrelease.tgz
 
 ## Known issues
 
-* HTTP/2 request (`Upgrade: SPDY`) is not supported yet. So `kubectl exec` and `kubectl port-forward` are not available.
+* HTTP/2 request (`Upgrade: SPDY`) is not supported yet. So `kubectl exec` and `kubectl port-forward` are not available. Waiting for HTTP/2 support in Spring Cloud Gateway ([issue](https://github.com/spring-cloud/spring-cloud-gateway/issues/7)).
