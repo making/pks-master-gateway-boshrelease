@@ -1,0 +1,7 @@
+- type: replace
+  path: /releases/name=pks-master-gateway/version
+  value: latest
+- type: remove
+  path: /releases/name=pks-master-gateway/url
+- type: remove
+  path: /releases/name=pks-master-gateway/sha1
