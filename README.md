@@ -2,6 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/106908/41807601-f0545490-770b-11e8-8b2e-57950fb9aa30.png)
 
+## How to deploy
 
 ### Create a `vm_extension` to attach a load balancer to the gateway
 
@@ -74,3 +75,7 @@ bosh -d pks-master-gateway deploy manifest/pks-master-gateway.yml \
 bosh create-release --name=pks-master-gateway --force --timestamp-version --tarball=/tmp/pks-master-gateway-boshrelease.tgz
 bosh upload-release /tmp/pks-master-gateway-boshrelease.tgz
 ```
+
+## Known issues
+
+* Upgrade request (websocket) is not supported yet. So `kubectl exec` and `kubectl port-forward` are not available.
