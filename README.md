@@ -14,7 +14,7 @@ om --target "https://${OPSMAN_DOMAIN_OR_IP_ADDRESS}" \
    --password "${OPS_MGR_PWD}" \
    create-vm-extension \
    --name pks-master-gateway \
-   --cloud-properties '{"tags":["pks-dev", "pks-master-gateway"], "target_pool": "pks-master-gateway", ephemeral_external_ip": true}'
+   --cloud-properties '{"tags":["pks-dev", "pks-master-gateway"], "target_pool": "pks-master-gateway", "ephemeral_external_ip": true}'
 ```
 
 AWS
@@ -27,6 +27,8 @@ om --target "https://${OPSMAN_DOMAIN_OR_IP_ADDRESS}" \
    --name pks-master-gateway \
    --cloud-properties '{"elbs":["pks-master-gateway"]}'
 ```
+
+then,
 
 ```
 om --target "https://${OPSMAN_DOMAIN_OR_IP_ADDRESS}" \
