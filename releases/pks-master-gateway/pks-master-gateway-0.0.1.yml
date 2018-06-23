@@ -1,0 +1,20 @@
+name: pks-master-gateway
+version: 0.0.1
+commit_hash: 1f40f53
+uncommitted_changes: true
+jobs:
+- name: pks-master-gateway
+  version: e4957c07d9114dfa93aa7c9591151bfdee97e516
+  fingerprint: e4957c07d9114dfa93aa7c9591151bfdee97e516
+  sha1: 6a8ee790c381b3704d17273b8680ec5f4396d3eb
+packages:
+- name: java
+  version: dfb8129f711fe7584b46c2b522bd3171ffc9752b
+  fingerprint: dfb8129f711fe7584b46c2b522bd3171ffc9752b
+  sha1: 653cac6cde8cb5a2b921fe4287c4875512398f1e
+  dependencies: []
+- name: pks-master-gateway
+  version: f9605f54d43ca073bc615e1a5202c96f0c357287
+  fingerprint: f9605f54d43ca073bc615e1a5202c96f0c357287
+  sha1: 5b990d2a2b8b8a0408d0a5ac10056bbcf8b484e6
+  dependencies: []
