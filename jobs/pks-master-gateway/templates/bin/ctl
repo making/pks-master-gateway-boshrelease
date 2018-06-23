@@ -29,6 +29,7 @@ case $1 in
       --pks.master.gateway.uaa-url=<%= p("pks_uaa_url") %> \
       --pks.master.gateway.uaa-client-id=<%= p("pks_uaa_client_id") %> \
       --pks.master.gateway.uaa-client-secret=<%= p("pks_uaa_client_secret") %> \
+      --pks.cluster.synchronize.interval=<%= p("pks_cluster_synchronize_interval") %> \
       --server.ssl.key-store=file:///var/vcap/jobs/pks-master-gateway/config/keystore.jks \
       >>$LOG_DIR/pks-master-gateway.stdout.log 2>>$LOG_DIR/pks-master-gateway.stderr.log
     ;;

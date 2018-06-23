@@ -18,6 +18,9 @@ properties:
     default: 8443
   pks_api_url:
     description: "PKS API URL"
+  pks_cluster_synchronize_interval:
+    description: "Interval to synchronize PKS clusters"
+    default: 30000
   pks_uaa_url:
     description: "PKS UAA URL"
   pks_uaa_client_id:
