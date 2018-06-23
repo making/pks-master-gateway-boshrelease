@@ -2,11 +2,8 @@
 
 ![image](https://user-images.githubusercontent.com/106908/41807601-f0545490-770b-11e8-8b2e-57950fb9aa30.png)
 
-```
-./add-blobs.sh
-bosh create-release --name=pks-master-gateway --force --timestamp-version --tarball=/tmp/pks-master-gateway-boshrelease.tgz
-bosh upload-release /tmp/pks-master-gateway-boshrelease.tgz
-```
+
+### Create a `vm_extension` to attach a load balancer to the gateway
 
 GCP
 ```
@@ -39,6 +36,8 @@ om --target "https://${OPSMAN_DOMAIN_OR_IP_ADDRESS}" \
    --ignore-warnings
 ```
 
+## Deploy pks gateway
+
 ```
 PKS_API_DEPLOYMENT=pivotal-container-service-191de86a18e2b8451374
 PKS_CLIENT_SECRET=$(om \
@@ -66,4 +65,12 @@ bosh -d pks-master-gateway deploy manifest/pks-master-gateway.yml \
   -v gw_vm_extension=pks-master-gateway \
   -v gw_az=asia-northeast1-a \
   --no-redact
+```
+
+### Development
+
+```
+./add-blobs.sh
+bosh create-release --name=pks-master-gateway --force --timestamp-version --tarball=/tmp/pks-master-gateway-boshrelease.tgz
+bosh upload-release /tmp/pks-master-gateway-boshrelease.tgz
 ```
