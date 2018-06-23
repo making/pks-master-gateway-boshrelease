@@ -36,7 +36,7 @@ om --target "https://${OPSMAN_DOMAIN_OR_IP_ADDRESS}" \
    --ignore-warnings
 ```
 
-### Deploy pks gateway
+### Deploy pks master gateway
 
 ```
 PKS_API_DEPLOYMENT=pivotal-container-service-191de86a18e2b8451374
