@@ -3,7 +3,9 @@ name: pks-master-gateway
 
 releases:
 - name: pks-master-gateway
-  version: latest
+  version: 0.0.1
+  url: https://github.com/making/pks-master-gateway-boshrelease/releases/download/0.0.1/pks-master-gateway-boshrelease.tgz
+  sha1: 29883797e815f48d2522735152cd388c1fe618eb
 
 stemcells:
 - os: ubuntu-trusty
