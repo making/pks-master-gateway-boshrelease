@@ -78,4 +78,4 @@ bosh upload-release /tmp/pks-master-gateway-boshrelease.tgz
 
 ## Known issues
 
-* Upgrade request (websocket) is not supported yet. So `kubectl exec` and `kubectl port-forward` are not available.
+* Upgrade request (`Upgrade: SPDY`) is not supported yet. So `kubectl exec` and `kubectl port-forward` are not available.
